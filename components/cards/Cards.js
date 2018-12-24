@@ -29,7 +29,7 @@ function Cards ({datas, loading}) {
 		);
 	return (
 		<Container>
-			{datas.map(data => <Card {...data} />)}
+			{datas.map(data => !data.error && <Card {...data} />)}
 		</Container>
 	);
 }

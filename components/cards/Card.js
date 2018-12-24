@@ -1,4 +1,3 @@
-import Download from 'react-download-link';
 import axios from 'axios';
 
 function downloadImage (image) {
@@ -16,7 +15,28 @@ function downloadImage (image) {
 	});
 }
 
-export default function Card ({title, judul, link}) {
+function CardError ({error}) {
+	const {
+		code,
+		type
+	} = error;
+	return (
+		<div className="w-full lg:w-1/2 p-3">
+			<div className="flex flex-col lg:flex-row rounded overflow-hidden h-auto lg:h-32 border shadow shadow-lg">
+				<div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+					<div className="text-black font-medium text-xl mb-2 leading-loose">{code + ':' + type}</div>
+'					<p className="text-grey-darker text-base">Hmm.. data ini lagi masalah, bentar di cek dulu ya</p>
+'				</div>
+			</div>
+		</div>
+	);
+}
+
+export default function Card ({title, judul, link, error}) {
+	if (error) 
+		return (
+			<CardError error={error} />
+		);
 	return (
 		<div className="w-full lg:w-1/2 p-3">
 			<div className="flex flex-col lg:flex-row rounded overflow-hidden h-auto lg:h-32 border shadow shadow-lg">
