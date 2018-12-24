@@ -1,10 +1,17 @@
 import { Component } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
+import getConfig from 'next/config';
 
 import Nav from './../components/nav/Nav';
 import Cards from './../components/cards/Cards';
 import Block from './../components/block/Block';
+
+const { publicRuntimeConfig } = getConfig()
+
+const {
+	API = 'http://localhost:3030'
+} = publicRuntimeConfig;
 
 class Index extends Component {
 	state={
@@ -31,7 +38,7 @@ class Index extends Component {
 
 		try {
 			req = await axios(
-				`http://localhost:3030/seeker?name=${name}`,
+				`${API}/seeker?name=${name}`,
 				{ cancelToken: this._source.token }
 			);
 		}
@@ -81,6 +88,7 @@ class Index extends Component {
 	}
 	render () {
 		const { title , description } = this.props;
+
 		return (
 			<div>
 				<Head>
