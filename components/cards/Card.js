@@ -1,18 +1,7 @@
-import axios from 'axios';
+import FileSaver from 'file-saver';
 
 function downloadImage (image) {
-	axios({
-		url: image,
-		method: 'GET',
-		responseType: 'blob', // important
-	}).then((response) => {
-		const url = window.URL.createObjectURL(new Blob([response.data], { type: 'image/jpeg'}));
-		const link = document.createElement('a');
-		link.href = url;
-		link.setAttribute('download', image);
-		document.body.appendChild(link);
-		link.click();
-	});
+	FileSaver.saveAs(image, "sertifikat_"+Date.now()+".jpg");
 }
 
 function CardError ({error}) {
@@ -42,11 +31,19 @@ export default function Card ({title, judul, link, error}) {
 			<div className="flex flex-col lg:flex-row rounded overflow-hidden h-auto lg:h-32 border shadow shadow-lg">
 				<img className="block h-auto w-full lg:w-48 flex-none bg-cover h-24" src={link} />
 				<div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-					<div className="text-black font-medium text-xl mb-2 leading-loose">{judul}</div>
+					<div className="text-black font-medium text-xl mb-2 leading-loose truncate">{judul}</div>
 					<p style={{fontSize: '.85rem'}} className="text-grey-darker text-base truncate">{title}</p>
-					<div onClick={() => downloadImage(link)}>
+					<button style={{
+						paddingBottom: '2px',
+						paddingTop: '1px',
+						background: '#74cbc9',
+						textAlign: 'center',
+						color: 'white',
+						borderRadius: '4px',
+						marginTop: '1px',
+					}} onClick={() => downloadImage(link)}>
 						Download Image
-					</div>
+					</button>
 				</div>
 			</div>
 		</div>

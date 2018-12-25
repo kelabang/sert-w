@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "file-saver": "^2.0.0",
     "next": "^7.0.2",
     "react": "^16.6.3",
     "react-content-loader": "^3.4.1",
