@@ -30,11 +30,11 @@ export default function Nav ({onChangeKeyword, keyword, actionSearch}) {
 			</div>
 			<ul className="text-sm text-grey-dark list-reset flex items-center">
 				<li>
-					<a href="#" className="inline-block py-2 px-3 text-grey-darkest hover:text-grey-dark no-underline">Log In</a>
+					<a href="#" className="inline-block py-2 px-3 text-grey-darkest hover:text-grey-dark no-underline">(not working) Log In</a>
 				</li>
 				<li>
 					<button className="bg-black hover:bg-grey-darker text-white ml-4 py-2 px-3">
-						Sign Up
+						(not working) Sign Up
 					</button>
 				</li>
 			</ul>

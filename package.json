@@ -19,6 +19,7 @@
     "react-dom": "^16.6.3",
     "react-download-link": "^2.2.0",
     "react-router-redux": "^5.0.0-alpha.9",
+    "react-window-size": "^1.2.2",
     "throttle-debounce": "^2.0.1"
   },
   "devDependencies": {

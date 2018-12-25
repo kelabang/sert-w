@@ -43,7 +43,7 @@ export default function Card ({title, judul, link, error}) {
 				<img className="block h-auto w-full lg:w-48 flex-none bg-cover h-24" src={link} />
 				<div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
 					<div className="text-black font-medium text-xl mb-2 leading-loose">{judul}</div>
-					<p className="text-grey-darker text-base">{title}</p>
+					<p style={{fontSize: '.85rem'}} className="text-grey-darker text-base truncate">{title}</p>
 					<div onClick={() => downloadImage(link)}>
 						Download Image
 					</div>
