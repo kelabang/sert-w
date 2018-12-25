@@ -90,7 +90,7 @@ class Index extends Component {
 						data: _data,
 						judul,
 					} = item
-					if (_data.error) 
+					if (_data && _data.error) 
 						cache = false;
 					if (_data) 
 						data.push({judul, ..._data});
