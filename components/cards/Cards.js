@@ -59,7 +59,7 @@ function Cards ({datas, loading, windowWidth}) {
 		);
 	return (
 		<Container>
-			{datas.map(data => !data.error && <Card {...data} />)}
+			{datas.map(data => <Card {...data} />)}
 		</Container>
 	);
 }

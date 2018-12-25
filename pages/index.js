@@ -19,6 +19,28 @@ class Index extends Component {
 		loading: false,
 		data: [],
 	}
+	flushCache = async (url) => {
+		console.log('flush')
+		if (typeof this._source_cache != typeof undefined) {
+			this._source.cancel('Operation canceled due to new request.')
+		}
+		// save the new request for cancellation
+		this._source_cache = axios.CancelToken.source();
+		try {
+			await axios(
+				url,
+				{ cancelToken: this._source_cache.token }
+			);
+		}
+		catch (error) {
+			if (axios.isCancel(error)) {
+				console.log('Request canceled', error);
+			} else {
+				console.log(error);
+			}
+		}
+
+	}
 	searchSertifikat = async () => {
 		const { name } = this.state;
 		if(!name) 
@@ -35,10 +57,11 @@ class Index extends Component {
 		this._source = axios.CancelToken.source();
 
 		let req = null;
+		let url = `${API}/seeker?name=${name}`
 
 		try {
 			req = await axios(
-				`${API}/seeker?name=${name}`,
+				url,
 				{ cancelToken: this._source.token }
 			);
 		}
@@ -51,6 +74,7 @@ class Index extends Component {
 		}
 		
 		let data = null;
+		let cache = true;
 		
 		if(req) {
 			const {
@@ -66,6 +90,8 @@ class Index extends Component {
 						data: _data,
 						judul,
 					} = item
+					if (_data.error) 
+						cache = false;
 					if (_data) 
 						data.push({judul, ..._data});
 				})
@@ -73,7 +99,10 @@ class Index extends Component {
 		}
 
 		console.log('now data', data)
-		
+
+		if(!cache) 
+			this.flushCache(`${API}/cache/clear/single/seeker?name=${name}`);
+
 		if(!data)
 			return false; 
 

@@ -4,7 +4,7 @@ function downloadImage (image) {
 	FileSaver.saveAs(image, "sertifikat_"+Date.now()+".jpg");
 }
 
-function CardError ({error}) {
+function CardError ({error, judul}) {
 	const {
 		code,
 		type
@@ -14,8 +14,8 @@ function CardError ({error}) {
 			<div className="flex flex-col lg:flex-row rounded overflow-hidden h-auto lg:h-32 border shadow shadow-lg">
 				<div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
 					<div className="text-black font-medium text-xl mb-2 leading-loose">{code + ':' + type}</div>
-'					<p className="text-grey-darker text-base">Hmm.. data ini lagi masalah, bentar di cek dulu ya</p>
-'				</div>
+					<p className="text-grey-darker text-base">{`Hmm.. data (${judul}) ini lagi masalah, bentar di cek dulu ya`}</p>
+				</div>
 			</div>
 		</div>
 	);
@@ -24,7 +24,7 @@ function CardError ({error}) {
 export default function Card ({title, judul, link, error}) {
 	if (error) 
 		return (
-			<CardError error={error} />
+			<CardError judul={judul} error={error} />
 		);
 	return (
 		<div className="w-full lg:w-1/2 p-3">
