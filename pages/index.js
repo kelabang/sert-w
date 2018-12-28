@@ -127,7 +127,7 @@ class Index extends Component {
 						content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 					/>
 					<meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-					<title>Index Of Pages</title>
+					<title>Anak UMB</title>
 					<link href="/static/main.css" rel="stylesheet" />
 					<link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800,900" rel="stylesheet" />
 					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossOrigin="anonymous" />
