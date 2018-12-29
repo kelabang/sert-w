@@ -117,7 +117,7 @@ class Index extends Component {
 	}
 	changeKeyword = async keyword => {
 		this.setState({
-			name: keyword
+			name: keyword.toLowerCase()
 		})
 	}
 	render () {
