@@ -10,7 +10,8 @@ import Block from './../components/block/Block';
 const { publicRuntimeConfig } = getConfig()
 
 const {
-	API = 'http://localhost:3030'
+	API = 'http://localhost:3030',
+	YEAR = ''
 } = publicRuntimeConfig;
 
 class Index extends Component {
@@ -58,6 +59,10 @@ class Index extends Component {
 
 		let req = null;
 		let url = `${API}/seeker?name=${name}`
+
+		if (YEAR) {
+			url = `${url}&year=${YEAR}`
+		}
 
 		try {
 			req = await axios(

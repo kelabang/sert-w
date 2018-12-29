@@ -2,5 +2,6 @@
 module.exports = {
 	publicRuntimeConfig: { // Will be available on both server and client
 		API: process.env.API,
+		YEAR: process.env.YEAR,
 	}
 }
