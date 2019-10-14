@@ -1,21 +1,24 @@
 import { Component } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
-import getConfig from 'next/config';
+// import getConfig from 'next/config';
 
 import Nav from './../components/nav/Nav';
 import Cards from './../components/cards/Cards';
 import Block from './../components/block/Block';
 
-const { publicRuntimeConfig } = getConfig()
+// const { publicRuntimeConfig } = getConfig()
 
-const {
-	API = 'http://localhost:3030',
-	YEAR = ''
-} = publicRuntimeConfig;
+// const {
+// 	API = 'http://localhost:3030',
+// 	YEAR = ''
+// } = publicRuntimeConfig;
+
+const API = 'http://api.nongki.online';
+const YEAR = '';
 
 class Index extends Component {
-	state={
+	state = {
 		name: '',
 		loading: false,
 		data: [],
@@ -44,7 +47,7 @@ class Index extends Component {
 	}
 	searchSertifikat = async () => {
 		const { name } = this.state;
-		if(!name) 
+		if (!name)
 			return name;
 
 		this.setState(prevState => {
@@ -77,11 +80,11 @@ class Index extends Component {
 				console.log(error);
 			}
 		}
-		
+
 		let data = null;
 		let cache = true;
-		
-		if(req) {
+
+		if (req) {
 			const {
 				data: {
 					data: arrdata
@@ -95,24 +98,24 @@ class Index extends Component {
 						data: _data,
 						judul,
 					} = item
-					if (_data && _data.error) 
+					if (_data && _data.error)
 						cache = false;
-					if (_data) 
-						data.push({judul, ..._data});
+					if (_data)
+						data.push({ judul, ..._data });
 				})
 			}
 		}
 
 		console.log('now data', data)
 
-		if(!cache) 
+		if (!cache)
 			this.flushCache(`${API}/cache/clear/single/seeker?name=${name}`);
 
-		if(!data)
-			return false; 
+		if (!data)
+			return false;
 
 		this.setState(prevState => {
-			return {...prevState, loading: false, data: [...data]}
+			return { ...prevState, loading: false, data: [...data] }
 		});
 	}
 	changeKeyword = async keyword => {
@@ -120,8 +123,8 @@ class Index extends Component {
 			name: keyword.toLowerCase()
 		})
 	}
-	render () {
-		const { title , description } = this.props;
+	render() {
+		const { title, description } = this.props;
 
 		return (
 			<div>
@@ -136,7 +139,7 @@ class Index extends Component {
 					<link href="/static/main.css" rel="stylesheet" />
 					<link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800,900" rel="stylesheet" />
 					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossOrigin="anonymous" />
-					
+
 					<script dangerouslySetInnerHTML={{
 						__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -148,8 +151,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 				</Head>
 
-				<Nav 
-					onChangeKeyword={this.changeKeyword} 
+				<Nav
+					onChangeKeyword={this.changeKeyword}
 					keyword={this.state.name}
 					actionSearch={this.searchSertifikat}
 				/>
