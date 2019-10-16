@@ -1,7 +1,7 @@
 import { debounce } from 'throttle-debounce';
 
-export default function Nav ({onChangeKeyword, keyword, actionSearch}) {
-	const handleChangeKeyword = debounce(500, value => {
+export default function Nav({ onChangeKeyword, keyword, actionSearch }) {
+	const handleChangeKeyword = debounce(1500, value => {
 		onChangeKeyword(value)
 		actionSearch()
 	})
@@ -15,17 +15,17 @@ export default function Nav ({onChangeKeyword, keyword, actionSearch}) {
 					lineHeight: '1',
 					color: 'black',
 				}}>
-					<img style={{width: '30px'}} src={'./../../static/logo.png'} className="rounded-full w-full" alt="logo" />
+					<img style={{ width: '30px' }} src={'./../../static/logo.png'} className="rounded-full w-full" alt="logo" />
 					nongki
 				</a>
-				<input 
+				<input
 					onChange={e => {
 						const value = e.target.value;
 						handleChangeKeyword(value);
-					}} 
-					type={keyword} 
-					placeholder="Search" 
-					className="text-sm transition focus:outline-0 border border-transparent focus:bg-white focus:border-grey-light placeholder-grey-darkest rounded bg-grey-lighter py-1 px-2 pl-10 appearance-none leading-normal ds-input" 
+					}}
+					type={keyword}
+					placeholder="Search"
+					className="text-sm transition focus:outline-0 border border-transparent focus:bg-white focus:border-grey-light placeholder-grey-darkest rounded bg-grey-lighter py-1 px-2 pl-10 appearance-none leading-normal ds-input"
 				/>
 			</div>
 			<ul className="text-sm text-grey-dark list-reset flex items-center">
